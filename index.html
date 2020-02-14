@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div id="app">
+    <div v-if="books.length">
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>publish Date</th>
+                <th>price</th>
+                <th>number</th>
+                <th>operate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(item, index) in books">
+                <td>{{index + 1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.date}}</td>
+                <!--            <td>{{getFinalPrice(item.price)}}</td>-->
+                <!--            use '|' to use filter-->
+                <td>{{item.price|showPrice}}</td>
+                <td>
+                    <button @click="decrement(index)"
+                            :disabled="item.count <= 1"
+                    >-</button>
+                    <!--                decrement(item.index) cannot, because of quote-->
+                    {{item.count}}
+                    <button @click="increment(index)">+</button>
+                </td>
+                <td>
+                    <button @click="remove(index)">Remove</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <h2>Total Price: {{totalPrice}}</h2>
+    </div>
+    <h2 v-else>Shop Cart Empty</h2>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script src="./main.js"></script>
+
+</body>
+</html>
+
+
