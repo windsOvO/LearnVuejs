@@ -48,7 +48,7 @@ const app = new Vue({
             let ans = 0;
             for (let item of this.books)
             {
-                ans += item.price;
+                ans += item.price * item.count;
             }
             return ans;
         }
